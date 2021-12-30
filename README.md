@@ -33,13 +33,13 @@ is used to access the API
 ### Username and Password
 
 ```javascript
-const zoom = zoominfo.client({username: '<username>', password: 'password'});
+const zoom = await zoominfo.client({username: '<username>', password: 'password'});
 ```
 
 ### Private Key Infrastructure (PKI)
 
 ```javascript
-const zoom = zoominfo.client({
+const zoom = await zoominfo.client({
   username: '<username>',
   clientId: '<clientId>',
   privateKey: '<privateKey>',
