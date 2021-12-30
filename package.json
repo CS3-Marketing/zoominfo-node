@@ -2,11 +2,7 @@
   "name": "zoominfo-node",
   "version": "1.0.0",
   "description": "Open-source NodeJS SDK for querying ZoomInfo data",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "files": [
-    "dist/**/*"
-  ],
+  "main": "index.js",
   "scripts": {
     "clean": "rimraf dist && rimraf docs",
     "build": "tsc",
