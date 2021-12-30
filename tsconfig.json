@@ -19,9 +19,9 @@
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "strictFunctionTypes": false,
-    "noUnusedLocals": false, // temp
+    "noUnusedLocals": true,
     "suppressImplicitAnyIndexErrors": true
   },
-  "include": ["src/**/*.ts", "tests/**/*.ts", ".eslintrc.js"],
+  "include": ["src/**/*.ts"],
   "exclude": ["node_modules", ".vscode", "examples", "docs", ".github", "dist"]
 }

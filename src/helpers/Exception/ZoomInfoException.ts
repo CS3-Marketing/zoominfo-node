@@ -14,4 +14,20 @@ export default class ZoomInfoException extends Error {
     };
     this.name = 'ZoomInfoException';
   }
+
+  /**
+   * Get the status code of the exception
+   * @returns status code
+   */
+  public getStatus(): number {
+    return this.status;
+  }
+
+  /**
+   * Get the data of the exception
+   * @returns response data
+   */
+  public getData(): Object {
+    return this.data;
+  }
 }
