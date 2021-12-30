@@ -30,6 +30,7 @@
     "@types/jsrsasign": "^9.0.1",
     "@typescript-eslint/eslint-plugin": "^2.27.0",
     "@typescript-eslint/parser": "^2.27.0",
+    "axios-mock-adapter": "^1.20.0",
     "eslint": "^8.5.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-plugin-import": "^2.25.3",
@@ -46,8 +47,6 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
-    "axios-mock-adapter": "^1.20.0",
-    "dotenv": "^10.0.0",
     "jsrsasign": "^10.5.1"
   },
   "bugs": {
