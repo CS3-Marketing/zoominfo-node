@@ -1,0 +1,7 @@
+{
+  "entryPoints": ["src"],
+  "out": "docs",
+  "name": "ZoomInfo Node SDK",
+  "tsconfig": "./tsconfig.json",
+  "entryPointStrategy": "expand"
+}

@@ -1,0 +1,30 @@
+name: Testing Pushes & Pull Requests
+
+on:
+  push:
+    branches:
+      - '**' # matches every branch
+      - '!stable' # excludes stable
+  pull_request:
+    branches:
+      - '**' # matches every branch
+      - '!stable' # excludes stable
+
+jobs:
+  test:
+    name: Testing
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14
+      - name: Install dependencies
+        run: npm install
+      - name: Test
+        run: npm test
