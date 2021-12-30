@@ -1,4 +1,4 @@
-import axios, {AxiosError, AxiosResponse} from 'axios';
+import axios, {AxiosError} from 'axios';
 import rs from 'jsrsasign';
 import ZoomInfoException from '../helpers/Exception/ZoomInfoException';
 
