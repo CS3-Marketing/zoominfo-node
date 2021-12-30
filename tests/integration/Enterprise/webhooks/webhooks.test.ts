@@ -1,8 +1,7 @@
-import axios, {AxiosResponse} from 'axios';
+import axios from 'axios';
 import Webhooks from '../../../../src/Enterprise/Webhooks';
 import MockAdapter from 'axios-mock-adapter';
 import ZoomInfoException from '../../../../src/helpers/Exception/ZoomInfoException';
-import {ICompanySearchResults} from '../../../../src/Enterprise/Search/Company Search/interfaces';
 import {
   IWebhookResults,
   IWebhookSubscriptionResult,
