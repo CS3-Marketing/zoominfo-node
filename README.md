@@ -46,6 +46,12 @@ const zoom = await zoominfo.client({
 });
 ```
 
+### Refreshing Access Token
+
+```javascript
+await zoom.refreshAccessToken();
+```
+
 ## Sample Usage
 
 ### Contact Search

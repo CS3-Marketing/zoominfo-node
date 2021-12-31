@@ -8,7 +8,6 @@ on:
   pull_request:
     branches:
       - '**' # matches every branch
-      - '!stable' # excludes stable
 
 jobs:
   test:
