@@ -1,17 +1,30 @@
+import crypto from 'crypto';
 import axios from 'axios';
-import Auth from '../../../src/Auth/';
+import Auth from '../../../src/Auth';
 import MockAdapter from 'axios-mock-adapter';
 import ZoomInfoException from '../../../src/helpers/Exception/ZoomInfoException';
 
 var mock = new MockAdapter(axios);
 
-describe('Basic Auth - Integration Test', () => {
+describe('PKI Auth - Integration Test', () => {
+  const {privateKey} = crypto.generateKeyPairSync('rsa', {
+    modulusLength: 2048,
+    publicKeyEncoding: {
+      type: 'spki',
+      format: 'pem',
+    },
+    privateKeyEncoding: {
+      type: 'pkcs8',
+      format: 'pem',
+    },
+  });
+
   test('should fetch user access token', async () => {
     const data = {
       jwt: 'accessTokenString',
     };
     mock.onPost('https://api.zoominfo.com/authenticate').reply(200, data);
-    await Auth.getBasicAuthToken('username', 'password').then((res: any) =>
+    await Auth.getPKIAuthToken('username', 'cliendId', privateKey).then((res: any) =>
       expect(res).toEqual(data.jwt)
     );
   });
@@ -19,6 +32,8 @@ describe('Basic Auth - Integration Test', () => {
   test('should throw credentials error', async () => {
     const data = {error: 'Invalid credentials'};
     mock.onPost('https://api.zoominfo.com/authenticate').reply(401, data);
-    await expect(Auth.getBasicAuthToken('username', 'password')).rejects.toThrow(ZoomInfoException);
+    await expect(Auth.getPKIAuthToken('username', 'cliendId', privateKey)).rejects.toThrow(
+      ZoomInfoException
+    );
   });
 });
