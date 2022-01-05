@@ -1,15 +1,11 @@
 export interface ICompanySearch {
-  rpp?: number;
-  page?: number;
-  sortOrder?: string;
-  sortBy?: string;
+  companyTicker?: Array<string>;
   companyId?: string;
   companyName?: string;
   companyWebsite?: string;
-  companyDescription?: string;
   parentId?: string;
   ultimateParentId?: string;
-  companyTicker?: Array<string>;
+  companyDescription?: string;
   companyType?: string;
   address?: string;
   street?: string;
@@ -47,6 +43,12 @@ export interface ICompanySearch {
   oneYearEmployeeGrowthRateMax?: string;
   twoYearEmployeeGrowthRateMin?: string;
   twoYearEmployeeGrowthRateMax?: string;
+  certified?: number;
+  excludeDefunctCompanies?: string;
+  rpp?: number;
+  page?: number;
+  sortBy?: string;
+  sortOrder?: string;
 }
 
 export interface ICompanySearchResults {

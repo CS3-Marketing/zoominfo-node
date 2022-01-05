@@ -1,9 +1,9 @@
 export interface IContactEnrich {
-  matchPersonInput: Array<IContactObject>;
-  outputFields: string[];
+  matchPersonInput?: Array<IContactObject>;
+  outputFields?: string[];
 }
 export interface IContactObject {
-  personId?: string;
+  personId?: number;
   fullName?: string;
   firstName?: string;
   lastName?: string;
@@ -14,8 +14,9 @@ export interface IContactObject {
   externalURL?: string;
   lastUpdatedDateAfter?: string;
   validDateAfter?: string;
-  companyId?: string;
+  companyId?: number;
   companyName?: string;
+  contactAccuracyScoreMin?: string;
 }
 
 export const outputFields = [

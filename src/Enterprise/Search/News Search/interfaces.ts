@@ -1,10 +1,10 @@
 export interface INewsSearch {
-  rpp?: number;
-  page?: number;
-  categories?: Array<string>;
-  url?: Array<string>;
-  pageDateMin?: string;
-  pageDateMax?: string;
+  rpp?: Number;
+  page?: Number;
+  categories?: Array<String>;
+  url?: Array<String>;
+  pageDateMin?: String;
+  pageDateMax?: String;
 }
 
 export interface INewsSearchResults {
