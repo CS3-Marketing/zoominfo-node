@@ -14,7 +14,7 @@ export interface IContactObject {
   externalURL?: string;
   lastUpdatedDateAfter?: string;
   validDateAfter?: string;
-  companyId?: number;
+  companyId?: string;
   companyName?: string;
   contactAccuracyScoreMin?: string;
 }

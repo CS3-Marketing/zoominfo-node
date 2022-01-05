@@ -4,7 +4,7 @@ export interface ICompanyEnrich {
 }
 
 export interface ICompanyObject {
-  companyId?: number;
+  companyId?: string;
   companyName?: string;
   companyWebsite?: string;
   companyTicker?: string;
