@@ -6,7 +6,7 @@ export interface IIntentEnrich {
   signalScoreMax?: number;
   audienceStrengthMin?: string;
   audienceStrengthMax?: string;
-  companyId?: number;
+  companyId?: string;
   companyName?: string;
   companyWebsite?: string;
   rpp?: number;
