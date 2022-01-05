@@ -1,6 +1,6 @@
 {
   "name": "zoominfo-node",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Open-source NodeJS SDK for querying ZoomInfo data",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
