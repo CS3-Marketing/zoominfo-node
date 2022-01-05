@@ -72,7 +72,7 @@ output fields in the response.
 
 ```javascript
 await zoom.enrich.intentEnrich
-  .getIntentEnrich({companyId: '344589814'})
+  .getIntentEnrich({companyId: 344589814})
   .then(res => console.log(res))
   .catch(err => console.log(err));
 ```
