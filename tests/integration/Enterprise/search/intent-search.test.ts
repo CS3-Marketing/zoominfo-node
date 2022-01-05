@@ -49,7 +49,7 @@ describe('Intent Search - Integration Test', () => {
       };
       mock.onPost('https://api.zoominfo.com/search/intent').reply(200, data);
       return await search
-        .getIntentSpecificSearch({topics: ['Cloud Security'], rpp: 25})
+        .getIntentSearch({topics: ['Cloud Security'], rpp: 25})
         .then((res: IIntentSearchResults) => expect(res).toEqual(data));
     });
 
@@ -57,59 +57,7 @@ describe('Intent Search - Integration Test', () => {
       const data = {status: 400, error: 'Unable to fetch intents from intent search'};
       mock.onPost('https://api.zoominfo.com/search/intent').reply(400, data);
       return await expect(
-        search.getIntentSpecificSearch({topics: ['Cloud Security'], rpp: 25})
-      ).rejects.toThrow(ZoomInfoException);
-    });
-
-    test('should fetch company intents from parameters', async () => {
-      const data = {
-        maxResults: 1,
-        totalResults: 1,
-        currentPage: 1,
-        data: [
-          {
-            id: 'd3ac21f6-f9f4-4a71-8ca9-8f4125937d2c',
-            category: 'Cyber Security',
-            topic: 'Mobile Security',
-            signalScore: 83,
-            audienceStrength: 'C',
-            newSignal: true,
-            signalDate: '7/5/2020 12:00 AM',
-            trend: 24,
-            recommendedContacts: [
-              {
-                id: -1766367996,
-                firstName: 'David',
-                lastName: 'Fike',
-                jobTitle: 'President',
-                jobFunction: [
-                  {
-                    name: 'Executive',
-                    department: 'C-Suite',
-                  },
-                ],
-              },
-            ],
-            company: {
-              id: 118998385,
-              name: 'Golden Gate University',
-              website: 'www.ggu.edu',
-              hasOtherTopicConsumption: true,
-            },
-          },
-        ],
-      };
-      mock.onPost('https://api.zoominfo.com/search/intent').reply(200, data);
-      return await search
-        .getIntentCompanySearch({topics: ['Cloud Security'], country: 'US'})
-        .then((res: IIntentSearchResults) => expect(res).toEqual(data));
-    });
-
-    test('should throw error fetching company intent from parameters', async () => {
-      const data = {status: 400, error: 'Unable to fetch intents from intent search'};
-      mock.onPost('https://api.zoominfo.com/search/intent').reply(400, data);
-      return await expect(
-        search.getIntentCompanySearch({topics: ['Cloud Security'], country: 'US'})
+        search.getIntentSearch({topics: ['Cloud Security'], rpp: 25})
       ).rejects.toThrow(ZoomInfoException);
     });
   });

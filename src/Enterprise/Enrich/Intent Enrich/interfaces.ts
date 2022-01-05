@@ -1,18 +1,18 @@
 export interface IIntentEnrich {
-  companyWebsite?: string;
-  companyId?: string;
-  companyName?: string;
-  topics?: string;
+  topics?: Array<string>;
   signalStartDate?: string;
   signalEndDate?: string;
   signalScoreMin?: number;
   signalScoreMax?: number;
-  audienceStrengthMin?: 'A' | 'B' | 'C' | 'D' | 'E';
-  audienceStrengthMax?: 'A' | 'B' | 'C' | 'D' | 'E';
+  audienceStrengthMin?: string;
+  audienceStrengthMax?: string;
+  companyId?: number;
+  companyName?: string;
+  companyWebsite?: string;
   rpp?: number;
   page?: number;
-  sortOrder?: 'asc' | 'ascending' | 'desc' | 'descending';
-  sortBy?: 'signalDate' | 'companyName' | 'signalScore' | 'category' | 'topic' | 'audienceStrength';
+  sortBy?: string;
+  sortOrder?: string;
 }
 
 export interface IIntentEnrichResults {

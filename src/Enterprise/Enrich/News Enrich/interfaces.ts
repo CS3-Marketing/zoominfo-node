@@ -1,7 +1,7 @@
 export interface INewsEnrich {
-  companyId?: string;
+  companyId?: number;
   limit?: number;
-  categories?: string;
+  categories?: Array<string>;
   url?: Array<string>;
   pageDateMin?: string;
   pageDateMax?: string;

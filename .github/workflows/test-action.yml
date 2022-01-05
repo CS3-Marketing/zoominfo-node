@@ -1,10 +1,6 @@
 name: Testing Pushes & Pull Requests
 
 on:
-  push:
-    branches:
-      - '**' # matches every branch
-      - '!stable' # excludes stable
   pull_request:
     branches:
       - '**' # matches every branch

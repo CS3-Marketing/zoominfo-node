@@ -1,13 +1,7 @@
 export interface IContactSearch {
-  rpp?: number;
-  page?: number;
-  sortOrder?: string;
-  sortBy?: string;
   personId?: string;
   emailAddress?: string;
-  supplementalEmail?: Array<string>;
   hashedEmail?: string;
-  phone?: Array<string>;
   fullName?: string;
   firstName?: string;
   middleInitial?: string;
@@ -24,8 +18,6 @@ export interface IContactSearch {
   contactAccuracyScoreMin?: string;
   contactAccuracyScoreMax?: string;
   jobFunction?: string;
-  lastUpdatedDateAfter?: string;
-  validDateAfter?: string;
   lastUpdatedInMonths?: number;
   hasBeenNotified?: string;
   companyPastOrPresent?: string;
@@ -76,8 +68,16 @@ export interface IContactSearch {
   oneYearEmployeeGrowthRateMax?: string;
   twoYearEmployeeGrowthRateMin?: string;
   twoYearEmployeeGrowthRateMax?: string;
+  lastUpdatedDateAfter?: string;
+  validDateAfter?: string;
+  phone?: Array<string>;
   positionStartDateMin?: string;
   positionStartDateMax?: string;
+  supplementalEmail?: Array<string>;
+  rpp?: number;
+  page?: number;
+  sortBy?: string;
+  sortOrder?: string;
 }
 
 export interface IContactSearchResults {

@@ -1,19 +1,12 @@
-export interface IIntentSpecificSearch {
-  topics: Array<string>;
+export interface IIntentSearch {
+  topics?: Array<string>;
   signalStartDate?: string;
   signalEndDate?: string;
   signalScoreMin?: number;
   signalScoreMax?: number;
-  audienceStrengthMin?: 'A' | 'B' | 'C' | 'D' | 'E';
-  audienceStrengthMax?: 'A' | 'B' | 'C' | 'D' | 'E';
-  rpp?: number;
-  page?: number;
-  sortOrder?: 'asc' | 'ascending' | 'desc' | 'descending';
-  sortBy?: 'signalDate' | 'companyName' | 'signalScore' | 'category' | 'topic' | 'audienceStrength';
-}
-
-export interface IIntentCompanySearch {
-  topics: Array<string>;
+  audienceStrengthMin?: string;
+  audienceStrengthMax?: string;
+  companyTicker?: Array<string>;
   companyDescription?: string;
   companyType?: string;
   address?: string;
@@ -48,12 +41,16 @@ export interface IIntentCompanySearch {
   zoominfoContactsMin?: string;
   zoominfoContactsMax?: string;
   companyStructureIncludedSubUnitTypes?: string;
-  certified?: number;
-  excludeDefunctCompanies?: boolean;
   oneYearEmployeeGrowthRateMin?: string;
   oneYearEmployeeGrowthRateMax?: string;
   twoYearEmployeeGrowthRateMin?: string;
   twoYearEmployeeGrowthRateMax?: string;
+  certified?: number;
+  excludeDefunctCompanies?: boolean;
+  rpp?: number;
+  page?: number;
+  sortBy?: string;
+  sortOrder?: string;
 }
 
 export interface IIntentSearchResults {

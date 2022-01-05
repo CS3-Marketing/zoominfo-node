@@ -1,7 +1,7 @@
 import {AxiosResponse} from 'axios';
 import Api from '../../../helpers/Api';
 import ZoomInfoException from '../../../helpers/Exception/ZoomInfoException';
-import {IIntentSearchResults, IIntentSpecificSearch, IIntentCompanySearch} from './interfaces';
+import {IIntentSearchResults, IIntentSearch} from './interfaces';
 
 /**
  * @class IntentSearch
@@ -16,25 +16,7 @@ export default class IntentSearch extends Api {
    * Use this endpoint to search for recommended contacts based on intent data.
    * @param params IIntentSearch
    */
-  public async getIntentSpecificSearch(
-    params: IIntentSpecificSearch
-  ): Promise<IIntentSearchResults> {
-    return this.post('/search/intent', params)
-      .then((res: AxiosResponse) => {
-        let data: IIntentSearchResults = res.data;
-        return data;
-      })
-      .catch((err: ZoomInfoException) => {
-        throw err;
-      });
-  }
-
-  /**
-   * Use this endpoint to search for companies based on intent data.
-   * @param params IIntentSearch
-   * @returns IIntentSearchResults
-   */
-  public async getIntentCompanySearch(params: IIntentCompanySearch): Promise<IIntentSearchResults> {
+  public async getIntentSearch(params: IIntentSearch): Promise<IIntentSearchResults> {
     return this.post('/search/intent', params)
       .then((res: AxiosResponse) => {
         let data: IIntentSearchResults = res.data;

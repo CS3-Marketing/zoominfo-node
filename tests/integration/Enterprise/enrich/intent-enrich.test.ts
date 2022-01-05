@@ -18,14 +18,14 @@ describe('Intent Enrich - Integration Test', () => {
       };
       mock.onPost('https://api.zoominfo.com/enrich/intent').reply(200, data);
       return await enrich
-        .getIntentEnrich({companyId: '123'})
+        .getIntentEnrich({companyId: 123})
         .then((res: IIntentEnrichResults) => expect(res).toEqual(data));
     });
 
     test('should throw error fetching intent from parameters', async () => {
       const data = {status: 400, error: 'Unable to fetch intent from intent enrich'};
       mock.onPost('https://api.zoominfo.com/enrich/intent').reply(400, data);
-      return await expect(enrich.getIntentEnrich({companyId: '123'})).rejects.toThrow(
+      return await expect(enrich.getIntentEnrich({companyId: 123})).rejects.toThrow(
         ZoomInfoException
       );
     });

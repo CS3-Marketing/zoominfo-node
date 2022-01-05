@@ -18,14 +18,14 @@ describe('Company Enrich - Integration Test', () => {
       };
       mock.onPost('https://api.zoominfo.com/enrich/company').reply(200, data);
       return await enrich
-        .getCompanyEnrich([{companyId: '123'}])
+        .getCompanyEnrich([{companyId: 123}])
         .then((res: ICompanyEnrichResults) => expect(res).toEqual(data));
     });
 
     test('should throw error fetching companies from parameters', async () => {
       const data = {status: 400, error: 'Unable to fetch companies from company enrich'};
       mock.onPost('https://api.zoominfo.com/enrich/company').reply(400, data);
-      return await expect(enrich.getCompanyEnrich([{companyId: '123'}])).rejects.toThrow(
+      return await expect(enrich.getCompanyEnrich([{companyId: 123}])).rejects.toThrow(
         ZoomInfoException
       );
     });

@@ -23,14 +23,14 @@ describe('Contact Enrich - Integration Test', () => {
       };
       mock.onPost('https://api.zoominfo.com/enrich/contact').reply(200, data);
       return await enrich
-        .getContactEnrich([{companyId: '123abc'}])
+        .getContactEnrich([{companyId: 123}])
         .then((res: IContactEnrichResults) => expect(res).toEqual(data));
     });
 
     test('should throw error fetching contact from parameters', async () => {
       const data = {status: 400, error: 'Unable to fetch contacts from contact enrich'};
       mock.onPost('https://api.zoominfo.com/enrich/contact').reply(400, data);
-      return await expect(enrich.getContactEnrich([{companyId: '123abc'}])).rejects.toThrow(
+      return await expect(enrich.getContactEnrich([{companyId: 123}])).rejects.toThrow(
         ZoomInfoException
       );
     });

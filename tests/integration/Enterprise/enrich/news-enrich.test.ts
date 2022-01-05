@@ -34,14 +34,14 @@ describe('News Enrich - Integration Test', () => {
       };
       mock.onPost('https://api.zoominfo.com/enrich/news').reply(200, data);
       return await enrich
-        .getNewsEnrich({companyId: '123abc'})
+        .getNewsEnrich({companyId: 123})
         .then((res: INewsEnrichResults) => expect(res).toEqual(data));
     });
 
     test('should throw error fetching news from parameters', async () => {
       const data = {status: 400, error: 'Unable to fetch news from news enrich'};
       mock.onPost('https://api.zoominfo.com/enrich/news').reply(400, data);
-      return await expect(enrich.getNewsEnrich({companyId: 'abc123'})).rejects.toThrow(
+      return await expect(enrich.getNewsEnrich({companyId: 123})).rejects.toThrow(
         ZoomInfoException
       );
     });
