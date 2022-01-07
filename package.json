@@ -51,7 +51,8 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
-    "jsrsasign": "^10.5.1"
+    "jsrsasign": "^10.5.1",
+    "p-ratelimit": "^1.0.1"
   },
   "bugs": {
     "url": "https://github.com/CS3-Marketing/zoominfo-node-sdk/issues"
