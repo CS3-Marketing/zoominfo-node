@@ -1,9 +1,9 @@
 export interface ICompanyMasterDataEnrich {
-  matchCompanyInput: Array<ICompanyObject>;
+  matchCompanyInput: Array<ICompanyMasterDataObject>;
   outputFields: string[];
 }
 
-export interface ICompanyObject {
+export interface ICompanyMasterDataObject {
   zi_c_location_id?: string;
   zi_es_ecid?: number;
   zi_es_location_id?: string;
