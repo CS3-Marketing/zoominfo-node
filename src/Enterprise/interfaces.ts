@@ -1,8 +1,3 @@
-import ZoomInfo from './ZoomInfo';
-import {IComplianceParams, IComplianceResult} from './Compliance/interfaces';
-import {IPEnrichParams, IPEnrichResult} from './WebSights/interfaces';
-import ZoomInfoException from './helpers/Exception/ZoomInfoException';
-import {IClientConfig} from './ZoomInfo';
 import {
   ICompanyEnrich,
   ICompanyObject,
@@ -30,6 +25,8 @@ import {
   IScoopEnrichResult,
   ITechnologyEnrich,
   ITechnologyEnrichResults,
+} from './Enrich/interfaces';
+import {
   ICompanySearch,
   ICompanySearchResults,
   IContactSearch,
@@ -40,6 +37,8 @@ import {
   INewsSearchResults,
   IScoopSearch,
   IScoopSearchResults,
+} from './Search/interfaces';
+import {
   IWebhookCreateParams,
   IWebhookUpdateParams,
   IWebhookResults,
@@ -47,14 +46,9 @@ import {
   IWebhookValidateResults,
   IWebhookVerificationResult,
   IWebhookSubscriptionResult,
-} from './Enterprise/interfaces';
+} from './Webhooks/interfaces';
 
 export {
-  IClientConfig,
-  IComplianceParams,
-  IComplianceResult,
-  IPEnrichParams,
-  IPEnrichResult,
   ICompanyEnrich,
   ICompanyObject,
   ICompanyEnrichResults,
@@ -98,7 +92,4 @@ export {
   IWebhookValidateResults,
   IWebhookVerificationResult,
   IWebhookSubscriptionResult,
-  ZoomInfoException,
 };
-
-export default ZoomInfo;

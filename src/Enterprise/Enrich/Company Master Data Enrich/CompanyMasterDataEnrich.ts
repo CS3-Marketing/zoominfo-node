@@ -4,7 +4,7 @@ import ZoomInfoException from '../../../helpers/Exception/ZoomInfoException';
 import {
   ICompanyMasterDataEnrich,
   ICompanyMasterDataEnrichResults,
-  ICompanyObject,
+  ICompanyMasterDataObject,
   outputFields,
 } from './interfaces';
 
@@ -25,7 +25,7 @@ export default class CompanyMasterDataEnrich extends Api {
    * @returns ICompanyMasterDataEnrichResults
    */
   public async getCompanyMasterDataEnrich(
-    params: Array<ICompanyObject>
+    params: Array<ICompanyMasterDataObject>
   ): Promise<ICompanyMasterDataEnrichResults> {
     let data: ICompanyMasterDataEnrich = {
       matchCompanyInput: params,
