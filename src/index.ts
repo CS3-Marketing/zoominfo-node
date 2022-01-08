@@ -1,5 +1,5 @@
 import ZoomInfo from './ZoomInfo';
-import {IComplianceParams, IComplianceResult} from './compliance/interfaces';
+import {IComplianceParams, IComplianceResult} from './Compliance/interfaces';
 import {IPEnrichParams, IPEnrichResult} from './WebSights/interfaces';
 import ZoomInfoException from './helpers/Exception/ZoomInfoException';
 import {IClientConfig} from './ZoomInfo';
