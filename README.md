@@ -16,8 +16,16 @@ npm install zoominfo-node
 
 Then in your code:
 
+TypeScript:
+
 ```javascript
 import zoominfo from 'zoominfo-node';
+```
+
+JavaScript:
+
+```javascript
+const zoominfo = require('zoominfo-node').default;
 ```
 
 ### Authentication Methods
