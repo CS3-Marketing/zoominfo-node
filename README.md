@@ -16,16 +16,8 @@ npm install zoominfo-node
 
 Then in your code:
 
-TypeScript:
-
 ```javascript
-import zoominfo from 'zoominfo-node';
-```
-
-JavaScript:
-
-```javascript
-const zoominfo = require('zoominfo-node').default;
+const zoominfo = require('zoominfo-node');
 ```
 
 ### Authentication Methods
@@ -69,8 +61,8 @@ Use Contact Search to retrieve contacts using valid query parameters.
 ```javascript
 await zoom.search.contactSearch
   .getContactSearch({companyName: 'ZoomInfo'})
-  .then((res: IContactSearchResults) => console.log(res))
-  .catch((err: ZoomInfoException) => console.log(err));
+  .then(res => console.log(res))
+  .catch(err => console.log(err));
 ```
 
 ### Intent Enrich
@@ -81,8 +73,8 @@ output fields in the response.
 ```javascript
 await zoom.enrich.intentEnrich
   .getIntentEnrich({companyId: '344589814'})
-  .then((res: IIntentEnrichResults) => console.log(res))
-  .catch((err: ZoomInfoException) => console.log(err));
+  .then(res => console.log(res))
+  .catch(err => console.log(err));
 ```
 
 ## API Structure
