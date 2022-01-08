@@ -17,7 +17,7 @@ npm install zoominfo-node
 Then in your code:
 
 ```javascript
-const zoominfo = require('zoominfo-node');
+import zoominfo from 'zoominfo-node';
 ```
 
 ### Authentication Methods
