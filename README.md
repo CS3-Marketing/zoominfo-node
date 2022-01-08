@@ -61,8 +61,8 @@ Use Contact Search to retrieve contacts using valid query parameters.
 ```javascript
 await zoom.search.contactSearch
   .getContactSearch({companyName: 'ZoomInfo'})
-  .then(res => console.log(res))
-  .catch(err => console.log(err));
+  .then((res: IContactSearchResults) => console.log(res))
+  .catch((err: ZoomInfoException) => console.log(err));
 ```
 
 ### Intent Enrich
@@ -73,8 +73,8 @@ output fields in the response.
 ```javascript
 await zoom.enrich.intentEnrich
   .getIntentEnrich({companyId: '344589814'})
-  .then(res => console.log(res))
-  .catch(err => console.log(err));
+  .then((res: IIntentEnrichResults) => console.log(res))
+  .catch((err: ZoomInfoException) => console.log(err));
 ```
 
 ## API Structure
