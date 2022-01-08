@@ -1,6 +1,6 @@
 import CompanySearch from './Company Search';
 import ContactSearch from './Contact Search';
-import IntentSearch from './Intent Search';
+import IntentSearch from './Intenet Search';
 import NewsSearch from './News Search';
 import ScoopSearch from './Scoop Search';
 
