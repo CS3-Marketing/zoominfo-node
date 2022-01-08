@@ -1,8 +1,8 @@
 import axios, {AxiosResponse} from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 import ZoomInfoException from '../../../../src/helpers/Exception/ZoomInfoException';
-import IntentSearch from '../../../../src/Enterprise/Search/Intenet Search';
-import {IIntentSearchResults} from '../../../../src/Enterprise/Search/Intenet Search/interfaces';
+import IntentSearch from '../../../../src/Enterprise/Search/Intent Search';
+import {IIntentSearchResults} from '../../../../src/Enterprise/Search/Intent Search/interfaces';
 
 const mock = new MockAdapter(axios);
 const search = new IntentSearch('accessTokenString');
