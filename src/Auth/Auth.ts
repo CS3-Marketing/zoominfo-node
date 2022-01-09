@@ -1,5 +1,6 @@
 import axios, {AxiosError} from 'axios';
 import rs from 'jsrsasign';
+import {pRateLimit} from 'p-ratelimit';
 import ZoomInfoException from '../helpers/Exception/ZoomInfoException';
 
 /**
@@ -9,6 +10,11 @@ import ZoomInfoException from '../helpers/Exception/ZoomInfoException';
 export default class Auth {
   private static AuthURL = 'https://api.zoominfo.com/authenticate';
 
+  private static limit = pRateLimit({
+    interval: 1000,
+    rate: 1,
+  });
+
   /**
    * Get JWT Token via Basic Auth
    * Note: Access Token is valid for 1 hour
@@ -17,17 +23,19 @@ export default class Auth {
    * @returns JWT Token
    */
   public static async getBasicAuthToken(username: string, password: string): Promise<string> {
-    return axios
-      .post(this.AuthURL, {
-        username,
-        password,
-      })
-      .then(res => res.data.jwt)
-      .catch((err: AxiosError) => {
-        if (err.response) {
-          throw new ZoomInfoException(err.response.status, err.response.data);
-        } else throw new ZoomInfoException(500, 'Internal Server Error');
-      });
+    return this.limit(async (): Promise<string> => {
+      return axios
+        .post(this.AuthURL, {
+          username,
+          password,
+        })
+        .then(res => res.data.jwt)
+        .catch((err: AxiosError) => {
+          if (err.response) {
+            throw new ZoomInfoException(err.response.status, err.response.data);
+          } else throw new ZoomInfoException(500, 'Internal Server Error');
+        });
+    });
   }
 
   /**
@@ -67,22 +75,24 @@ export default class Auth {
 
     let clientJWT = rs.KJUR.jws.JWS.sign(alg, sHeader, sPayload, privateKey);
 
-    return axios
-      .post(
-        this.AuthURL,
-        {},
-        {
-          headers: {
-            Authorization: 'Bearer ' + clientJWT,
-          },
-        }
-      )
-      .then(res => res.data.jwt)
-      .catch((err: AxiosError) => {
-        if (err.response) {
-          throw new ZoomInfoException(err.response.status, err.response.data);
-        } else throw new ZoomInfoException(500, 'Internal Server Error');
-      });
+    return this.limit(async (): Promise<string> => {
+      return axios
+        .post(
+          this.AuthURL,
+          {},
+          {
+            headers: {
+              Authorization: 'Bearer ' + clientJWT,
+            },
+          }
+        )
+        .then(res => res.data.jwt)
+        .catch((err: AxiosError) => {
+          if (err.response) {
+            throw new ZoomInfoException(err.response.status, err.response.data);
+          } else throw new ZoomInfoException(500, 'Internal Server Error');
+        });
+    });
   }
 
   /**
