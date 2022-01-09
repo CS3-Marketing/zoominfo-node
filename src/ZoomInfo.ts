@@ -9,7 +9,7 @@ import Webhooks from './Enterprise/Webhooks';
 import WebSights from './WebSights';
 import Compliance from './Compliance';
 
-interface IClientConfig {
+export interface IClientConfig {
   username: string;
   password?: string;
   clientId?: string;
@@ -19,7 +19,7 @@ interface IClientConfig {
 /**
  * @class ZoomInfo
  */
-export class ZoomInfo {
+export default class ZoomInfo {
   private accessToken: string;
 
   private config: IClientConfig;
