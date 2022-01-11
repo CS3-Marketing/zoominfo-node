@@ -7,7 +7,7 @@ Relationship Management (CRM), Marketing Automation (MA), and other systems in y
 
 ## Installation
 
-The easiest way to install zoominfo is using [NPM](https://npmjs.com). Run the command below from
+The easiest way to install zoominfo is using [NPM](https://www.npmjs.com/package/zoominfo-node). Run the command below from
 your project directory to install the library.
 
 ```bash
