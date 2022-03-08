@@ -13,10 +13,10 @@
     "lint": "eslint \"src/**/*.ts\" \"test/**/*.ts\"",
     "format": "prettier --write \"src/**/*\" \"test/**/*\"",
     "type-check": "tsc -noEmit",
-    "docs": "typedoc",
     "semantic-release": "semantic-release",
     "test": "jest",
-    "test:coverage": "jest --coverage"
+    "test:coverage": "jest --coverage",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -42,6 +42,7 @@
     "eslint-config-prettier": "^8.4.0",
     "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-prettier": "^4.0.0",
+    "husky": "^7.0.0",
     "jest": "^26.6.3",
     "prettier": "^2.0.4",
     "semantic-release": "^19.0.2",
