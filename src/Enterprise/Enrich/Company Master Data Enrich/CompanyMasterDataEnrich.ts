@@ -1,4 +1,4 @@
-import {AxiosResponse} from 'axios';
+import { AxiosResponse } from 'axios';
 import Api from '../../../helpers/Api';
 import ZoomInfoException from '../../../helpers/Exception/ZoomInfoException';
 import {
@@ -13,7 +13,7 @@ import {
  * @docs https://api-docs.zoominfo.com/#dba1b1d1-e81c-4bb6-b7dc-6487eebcd4e6
  */
 export default class CompanyMasterDataEnrich extends Api {
-  constructor(accessToken: string) {
+  constructor(protected accessToken: string) {
     super(accessToken);
   }
 
@@ -25,18 +25,15 @@ export default class CompanyMasterDataEnrich extends Api {
    * @returns ICompanyMasterDataEnrichResults
    */
   public async getCompanyMasterDataEnrich(
-    params: Array<ICompanyMasterDataObject>
+    params: Array<ICompanyMasterDataObject>,
   ): Promise<ICompanyMasterDataEnrichResults> {
-    let data: ICompanyMasterDataEnrich = {
+    const data: ICompanyMasterDataEnrich = {
       matchCompanyInput: params,
-      outputFields: outputFields,
+      outputFields,
     };
 
     return this.post('/enrich/company-master', data)
-      .then((res: AxiosResponse) => {
-        let data: ICompanyMasterDataEnrichResults = res.data;
-        return data;
-      })
+      .then((res: AxiosResponse) => res.data)
       .catch((err: ZoomInfoException) => {
         throw err;
       });

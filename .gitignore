@@ -48,9 +48,6 @@ jspm_packages
 # misc
 .DS_Store
 
-# Visual Studio code
-.vscode
-
 .build
 dist
 .webpackCache

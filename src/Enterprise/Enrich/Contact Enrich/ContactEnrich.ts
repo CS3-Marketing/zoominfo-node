@@ -1,14 +1,14 @@
-import {AxiosResponse} from 'axios';
+import { AxiosResponse } from 'axios';
 import Api from '../../../helpers/Api';
 import ZoomInfoException from '../../../helpers/Exception/ZoomInfoException';
-import {IContactEnrich, IContactEnrichResults, IContactObject, outputFields} from './interfaces';
+import { IContactEnrich, IContactEnrichResults, IContactObject, outputFields } from './interfaces';
 
 /**
  * @class ContactEnrich
  * @docs https://api-docs.zoominfo.com/#cf83bb37-31cf-45d3-a276-08625ca04c60
  */
 export default class ContactEnrich extends Api {
-  constructor(accessToken: string) {
+  constructor(protected accessToken: string) {
     super(accessToken);
   }
 
@@ -27,16 +27,13 @@ export default class ContactEnrich extends Api {
    * @returns IContactEnrichResults
    */
   public async getContactEnrich(params: Array<IContactObject>): Promise<IContactEnrichResults> {
-    let data: IContactEnrich = {
+    const data: IContactEnrich = {
       matchPersonInput: params,
-      outputFields: outputFields,
+      outputFields,
     };
 
     return this.post('/enrich/contact', data)
-      .then((res: AxiosResponse) => {
-        let data: IContactEnrichResults = res.data;
-        return data;
-      })
+      .then((res: AxiosResponse) => res.data)
       .catch((err: ZoomInfoException) => {
         throw err;
       });

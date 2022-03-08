@@ -1,4 +1,4 @@
-import {AxiosResponse} from 'axios';
+import { AxiosResponse } from 'axios';
 import Api from '../../../helpers/Api';
 import ZoomInfoException from '../../../helpers/Exception/ZoomInfoException';
 import {
@@ -6,14 +6,14 @@ import {
   ICorporateHierarchyEnrichResults,
   ICorporateHierarchyObject,
   outputFields,
-} from '../Corporate Hierarchy Enrich/interfaces';
+} from './interfaces';
 
 /**
  * @class CorporateHiearchyEnrich
  * @docs https://api-docs.zoominfo.com/#a02f2173-3808-467f-be24-54b4cc93f8c3
  */
 export default class CorporateHiearchyEnrich extends Api {
-  constructor(accessToken: string) {
+  constructor(protected accessToken: string) {
     super(accessToken);
   }
 
@@ -23,18 +23,15 @@ export default class CorporateHiearchyEnrich extends Api {
    * @returns ICorpotateHierarchyEnrichResults
    */
   public async getCorporateHiearchyEnrich(
-    params: Array<ICorporateHierarchyObject>
+    params: Array<ICorporateHierarchyObject>,
   ): Promise<ICorporateHierarchyEnrichResults> {
-    let data: ICorporateHierarchyEnrich = {
+    const data: ICorporateHierarchyEnrich = {
       matchCompanyInput: params,
-      outputFields: outputFields,
+      outputFields,
     };
 
     return this.post('/enrich/corporatehierarchy', data)
-      .then((res: AxiosResponse) => {
-        let data: ICorporateHierarchyEnrichResults = res.data;
-        return data;
-      })
+      .then((res: AxiosResponse) => res.data)
       .catch((err: ZoomInfoException) => {
         throw err;
       });

@@ -7,7 +7,7 @@ import IPEnrich from './IPEnrich';
 export default class WebSights {
   public IPenrich: IPEnrich;
 
-  constructor(accessToken: string) {
+  constructor(protected accessToken: string) {
     this.IPenrich = new IPEnrich(accessToken);
   }
 }

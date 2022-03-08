@@ -44,5 +44,5 @@ export const outputFields = [
 
 export interface ICompanyMasterDataEnrichResults {
   success: string;
-  data: {result: []};
+  data: { result: [] };
 }

@@ -9,8 +9,8 @@ export default class ZoomInfoException extends Error {
     this.message = errorMessage;
     this.data = {
       status,
-      errorMessage: errorMessage,
-      errorData: errorData,
+      errorMessage,
+      errorData,
     };
     this.name = 'ZoomInfoException';
   }

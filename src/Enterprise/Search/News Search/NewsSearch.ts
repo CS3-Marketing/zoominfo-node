@@ -1,14 +1,14 @@
-import {AxiosResponse} from 'axios';
+import { AxiosResponse } from 'axios';
 import Api from '../../../helpers/Api';
 import ZoomInfoException from '../../../helpers/Exception/ZoomInfoException';
-import {INewsSearch, INewsSearchResults} from './interfaces';
+import { INewsSearch, INewsSearchResults } from './interfaces';
 
 /**
  * @class NewsSearch
  * @docs https://api-docs.zoominfo.com/#30b8d735-cfa2-44ca-b7e8-2b9b16786df1
  */
 export default class NewsSearch extends Api {
-  constructor(accessToken: string) {
+  constructor(protected accessToken: string) {
     super(accessToken);
   }
 
@@ -20,7 +20,7 @@ export default class NewsSearch extends Api {
   public async getNewsSearch(params: INewsSearch): Promise<INewsSearchResults> {
     return this.post('/search/news', params)
       .then((res: AxiosResponse) => {
-        let data: INewsSearchResults = res.data;
+        const { data } = res;
         return data;
       })
       .catch((err: ZoomInfoException) => {

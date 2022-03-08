@@ -1,14 +1,14 @@
-import {AxiosResponse} from 'axios';
+import { AxiosResponse } from 'axios';
 import Api from '../../../helpers/Api';
 import ZoomInfoException from '../../../helpers/Exception/ZoomInfoException';
-import {IScoopSearch, IScoopSearchResults} from './interfaces';
+import { IScoopSearch, IScoopSearchResults } from './interfaces';
 
 /**
  * @class ScoopSearch
  * @docs https://api-docs.zoominfo.com/#5e4c2ac9-caa7-41ef-bdae-efff022cff30
  */
 export default class ScoopSearch extends Api {
-  constructor(accessToken: string) {
+  constructor(protected accessToken: string) {
     super(accessToken);
   }
 
@@ -20,7 +20,7 @@ export default class ScoopSearch extends Api {
   public async getScoopSearch(params: IScoopSearch): Promise<IScoopSearchResults> {
     return this.post('/search/scoop', params)
       .then((res: AxiosResponse) => {
-        let data: IScoopSearchResults = res.data;
+        const { data } = res;
         return data;
       })
       .catch((err: ZoomInfoException) => {

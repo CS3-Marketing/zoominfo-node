@@ -1,14 +1,14 @@
-import {AxiosResponse} from 'axios';
+import { AxiosResponse } from 'axios';
 import Api from '../../../helpers/Api';
 import ZoomInfoException from '../../../helpers/Exception/ZoomInfoException';
-import {IIntentEnrich, IIntentEnrichResults} from './interfaces';
+import { IIntentEnrich, IIntentEnrichResults } from './interfaces';
 
 /**
  * @class IntentEnrich
  * @docs https://api-docs.zoominfo.com/#89820f82-9de3-446c-935a-3791548af946
  */
 export default class IntentEnrich extends Api {
-  constructor(accessToken: string) {
+  constructor(protected accessToken: string) {
     super(accessToken);
   }
 
@@ -20,7 +20,7 @@ export default class IntentEnrich extends Api {
   public async getIntentEnrich(params: IIntentEnrich): Promise<IIntentEnrichResults> {
     return this.post('/enrich/intent', params)
       .then((res: AxiosResponse) => {
-        let data: IIntentEnrichResults = res.data;
+        const { data } = res;
         return data;
       })
       .catch((err: ZoomInfoException) => {

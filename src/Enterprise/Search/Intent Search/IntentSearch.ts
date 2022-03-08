@@ -1,14 +1,14 @@
-import {AxiosResponse} from 'axios';
+import { AxiosResponse } from 'axios';
 import Api from '../../../helpers/Api';
 import ZoomInfoException from '../../../helpers/Exception/ZoomInfoException';
-import {IIntentSearchResults, IIntentSearch} from './interfaces';
+import { IIntentSearchResults, IIntentSearch } from './interfaces';
 
 /**
  * @class IntentSearch
  * @docs https://api-docs.zoominfo.com/#a138aca7-86eb-4dd4-b0d8-f72ff32090ea
  */
 export default class IntentSearch extends Api {
-  constructor(accessToken: string) {
+  constructor(protected accessToken: string) {
     super(accessToken);
   }
 
@@ -19,7 +19,7 @@ export default class IntentSearch extends Api {
   public async getIntentSearch(params: IIntentSearch): Promise<IIntentSearchResults> {
     return this.post('/search/intent', params)
       .then((res: AxiosResponse) => {
-        let data: IIntentSearchResults = res.data;
+        const { data } = res;
         return data;
       })
       .catch((err: ZoomInfoException) => {

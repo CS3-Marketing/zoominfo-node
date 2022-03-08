@@ -1,14 +1,14 @@
-import {AxiosResponse} from 'axios';
+import { AxiosResponse } from 'axios';
 import Api from '../helpers/Api';
 import ZoomInfoException from '../helpers/Exception/ZoomInfoException';
-import {IComplianceParams, IComplianceResult} from './interfaces';
+import { IComplianceParams, IComplianceResult } from './interfaces';
 
 /**
  * @class Compliance
  * @docs https://api-docs.zoominfo.com/#6b305a99-cbad-4a44-aaa4-23b14d126a43
  */
 export default class Compliance extends Api {
-  constructor(accessToken: string) {
+  constructor(protected accessToken: string) {
     super(accessToken);
   }
 
@@ -20,7 +20,7 @@ export default class Compliance extends Api {
   public async compliance(params: IComplianceParams): Promise<IComplianceResult> {
     return this.post('/compliance', params)
       .then((res: AxiosResponse) => {
-        let data: IComplianceResult = res.data;
+        const { data } = res;
         return data;
       })
       .catch((err: ZoomInfoException) => {

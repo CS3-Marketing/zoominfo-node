@@ -1,6 +1,6 @@
-import axios, {AxiosError} from 'axios';
+import axios, { AxiosError } from 'axios';
 import rs from 'jsrsasign';
-import {pRateLimit} from 'p-ratelimit';
+import { pRateLimit } from 'p-ratelimit';
 import ZoomInfoException from '../helpers/Exception/ZoomInfoException';
 
 /**
@@ -23,19 +23,20 @@ export default class Auth {
    * @returns JWT Token
    */
   public static async getBasicAuthToken(username: string, password: string): Promise<string> {
-    return this.limit(async (): Promise<string> => {
-      return axios
-        .post(this.AuthURL, {
-          username,
-          password,
-        })
-        .then(res => res.data.jwt)
-        .catch((err: AxiosError) => {
-          if (err.response) {
-            throw new ZoomInfoException(err.response.status, err.response.data);
-          } else throw new ZoomInfoException(500, 'Internal Server Error');
-        });
-    });
+    return this.limit(
+      async (): Promise<string> =>
+        axios
+          .post(this.AuthURL, {
+            username,
+            password,
+          })
+          .then((res) => res.data.jwt)
+          .catch((err: AxiosError) => {
+            if (err.response) {
+              throw new ZoomInfoException(err.response.status, err.response.data);
+            } else throw new ZoomInfoException(500, 'Internal Server Error');
+          }),
+    );
   }
 
   /**
@@ -49,50 +50,51 @@ export default class Auth {
   public static async getPKIAuthToken(
     username: string,
     clientId: string,
-    privateKey: string
+    privateKey: string,
   ): Promise<string> {
     const dtNow = new Date();
-    let alg = 'RS256';
-    let iss = 'zoominfo-node-sdk';
-    let aud = 'enterprise_api';
+    const alg = 'RS256';
+    const iss = 'zoominfo-node-sdk';
+    const aud = 'enterprise_api';
 
-    let header = {
+    const header = {
       typ: 'JWT',
-      alg: alg,
+      alg,
     };
 
-    let data = {
-      aud: aud,
-      iss: iss,
-      username: username,
+    const data = {
+      aud,
+      iss,
+      username,
       client_id: clientId,
       iat: Auth.getIAT(dtNow),
       exp: Auth.getEXP(dtNow),
     };
 
-    let sHeader = JSON.stringify(header);
-    let sPayload = JSON.stringify(data);
+    const sHeader = JSON.stringify(header);
+    const sPayload = JSON.stringify(data);
 
-    let clientJWT = rs.KJUR.jws.JWS.sign(alg, sHeader, sPayload, privateKey);
+    const clientJWT = rs.KJUR.jws.JWS.sign(alg, sHeader, sPayload, privateKey);
 
-    return this.limit(async (): Promise<string> => {
-      return axios
-        .post(
-          this.AuthURL,
-          {},
-          {
-            headers: {
-              Authorization: 'Bearer ' + clientJWT,
+    return this.limit(
+      async (): Promise<string> =>
+        axios
+          .post(
+            this.AuthURL,
+            {},
+            {
+              headers: {
+                Authorization: `Bearer ${clientJWT}`,
+              },
             },
-          }
-        )
-        .then(res => res.data.jwt)
-        .catch((err: AxiosError) => {
-          if (err.response) {
-            throw new ZoomInfoException(err.response.status, err.response.data);
-          } else throw new ZoomInfoException(500, 'Internal Server Error');
-        });
-    });
+          )
+          .then((res) => res.data.jwt)
+          .catch((err: AxiosError) => {
+            if (err.response) {
+              throw new ZoomInfoException(err.response.status, err.response.data);
+            } else throw new ZoomInfoException(500, 'Internal Server Error');
+          }),
+    );
   }
 
   /**
@@ -102,7 +104,7 @@ export default class Auth {
    */
   public static getIAT(dtNow: Date): number {
     let iat = Math.floor(dtNow.getTime() / 1000);
-    iat = iat - 60;
+    iat -= 60;
     return iat;
   }
 
@@ -113,7 +115,7 @@ export default class Auth {
    */
   public static getEXP(dtNow: Date): number {
     let exp = Math.floor(dtNow.getTime() / 1000) + 5 * 60;
-    exp = exp - 60;
+    exp -= 60;
     return exp;
   }
 }

@@ -1,4 +1,4 @@
-import {AxiosResponse} from 'axios';
+import { AxiosResponse } from 'axios';
 import Api from '../../helpers/Api';
 import ZoomInfoException from '../../helpers/Exception/ZoomInfoException';
 
@@ -7,7 +7,7 @@ import ZoomInfoException from '../../helpers/Exception/ZoomInfoException';
  * @docs https://api-docs.zoominfo.com/#df4f66e5-07dc-4449-9d83-b0c189d7d2be
  */
 export default class Usage extends Api {
-  constructor(accessToken: string) {
+  constructor(protected accessToken: string) {
     super(accessToken);
   }
 
