@@ -1,0 +1,31 @@
+{
+  "name": "ZoomInfo Node SDK",
+  "dockerComposeFile": ["docker-compose.yml"],
+  "service": "app",
+  "workspaceFolder": "/workspace",
+  "settings": {
+    "workbench.colorTheme": "GitHub Dark",
+    "terminal.integrated.defaultProfile.linux": "bash"
+  },
+  "extensions": [
+    "GitHub.vscode-pull-request-github",
+    "PKief.material-icon-theme",
+    "GitHub.github-vscode-theme",
+    "ms-azuretools.vscode-docker",
+    "EditorConfig.EditorConfig",
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "ms-vscode.vscode-typescript-next",
+    "eg2.vscode-npm-script",
+    "christian-kohler.npm-intellisense",
+    "christian-kohler.path-intellisense",
+    "DavidAnson.vscode-markdownlint",
+    "GitHub.copilot"
+  ],
+  "features": {
+    "git": "latest",
+    "github-cli": "latest"
+  },
+  "remoteUser": "node",
+  "postCreateCommand": "sudo chown node node_modules && ssh-add ~/.ssh/id_rsa && yarn install"
+}
