@@ -1,17 +1,14 @@
-import {AxiosResponse} from 'axios';
+import { AxiosResponse } from 'axios';
 import Api from '../../../helpers/Api';
 import ZoomInfoException from '../../../helpers/Exception/ZoomInfoException';
-import {
-  ICompanyLocationEnrich,
-  ICompanyLocationEnrichResults,
-} from '../Company Location Enrich/interfaces';
+import { ICompanyLocationEnrich, ICompanyLocationEnrichResults } from './interfaces';
 
 /**
  * @class CompanyLocationEnrich
  * @docs https://api-docs.zoominfo.com/#e87d8559-3d5e-4477-97fb-d363b420b757
  */
 export default class CompanyLocationEnrich extends Api {
-  constructor(accessToken: string) {
+  constructor(protected accessToken: string) {
     super(accessToken);
   }
 
@@ -21,11 +18,11 @@ export default class CompanyLocationEnrich extends Api {
    * @returns ICompanyLocationEnrichResults
    */
   public async getCompanyLocationEnrich(
-    params: ICompanyLocationEnrich
+    params: ICompanyLocationEnrich,
   ): Promise<ICompanyLocationEnrichResults> {
     return this.post('/enrich/location', params)
       .then((res: AxiosResponse) => {
-        let data: ICompanyLocationEnrichResults = res.data;
+        const { data } = res;
         return data;
       })
       .catch((err: ZoomInfoException) => {

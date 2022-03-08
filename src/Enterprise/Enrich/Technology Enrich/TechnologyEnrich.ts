@@ -1,14 +1,14 @@
-import {AxiosResponse} from 'axios';
+import { AxiosResponse } from 'axios';
 import Api from '../../../helpers/Api';
 import ZoomInfoException from '../../../helpers/Exception/ZoomInfoException';
-import {ITechnologyEnrich, ITechnologyEnrichResults} from './interfaces';
+import { ITechnologyEnrich, ITechnologyEnrichResults } from './interfaces';
 
 /**
  * @class TechnologyEnrich
  * @docs https://api-docs.zoominfo.com/#aa294cb1-858e-406b-81d8-4cb2fe4efaf3
  */
 export default class TechnologyEnrich extends Api {
-  constructor(accessToken: string) {
+  constructor(protected accessToken: string) {
     super(accessToken);
   }
 
@@ -20,7 +20,7 @@ export default class TechnologyEnrich extends Api {
   public async getTechnologyEnrich(params: ITechnologyEnrich): Promise<ITechnologyEnrichResults> {
     return this.post('/enrich/tech', params)
       .then((res: AxiosResponse) => {
-        let data: ITechnologyEnrichResults = res.data;
+        const { data } = res;
         return data;
       })
       .catch((err: ZoomInfoException) => {

@@ -1,4 +1,4 @@
-import {AxiosResponse} from 'axios';
+import { AxiosResponse } from 'axios';
 import Api from '../../helpers/Api';
 import ZoomInfoException from '../../helpers/Exception/ZoomInfoException';
 
@@ -7,7 +7,7 @@ import ZoomInfoException from '../../helpers/Exception/ZoomInfoException';
  * @docs https://api-docs.zoominfo.com/#28358f09-9863-42af-a93c-6710a8cacf9d
  */
 export default class Lookup extends Api {
-  constructor(accessToken: string) {
+  constructor(protected accessToken: string) {
     super(accessToken);
   }
 
@@ -281,7 +281,7 @@ export default class Lookup extends Api {
    */
   public async getTechProduct(): Promise<AxiosResponse['data']> {
     return this.get(
-      `/lookup/tech/product?vendor=microsoft corporation&parentCategory=Communication and Collaboration&category=Unified Communications`
+      `/lookup/tech/product?vendor=microsoft corporation&parentCategory=Communication and Collaboration&category=Unified Communications`,
     )
       .then((res: AxiosResponse) => res.data)
       .catch((err: ZoomInfoException) => {
@@ -295,7 +295,7 @@ export default class Lookup extends Api {
    */
   public async getHashTag(): Promise<AxiosResponse['data']> {
     return this.get(
-      `/lookup/hashtag?vendor=microsoft corporation&parentCategory=Communication and Collaboration&category=Unified Communications`
+      `/lookup/hashtag?vendor=microsoft corporation&parentCategory=Communication and Collaboration&category=Unified Communications`,
     )
       .then((res: AxiosResponse) => res.data)
       .catch((err: ZoomInfoException) => {

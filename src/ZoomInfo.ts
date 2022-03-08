@@ -75,21 +75,23 @@ export default class ZoomInfo {
    * @returns accessToken
    */
   private static async fetchAccessToken(config: IClientConfig): Promise<string> {
-    const {username, password, clientId, privateKey} = config;
+    const { username, password, clientId, privateKey } = config;
     if (username && password) {
-      let accessToken = await Auth.getBasicAuthToken(username, password)
+      const accessToken = await Auth.getBasicAuthToken(username, password)
         .then((token: string) => token)
         .catch((err: ZoomInfoException) => {
           throw err;
         });
       return accessToken;
-    } else if (username && clientId && privateKey) {
-      let accessToken = await Auth.getPKIAuthToken(username, clientId, privateKey)
+    }
+    if (username && clientId && privateKey) {
+      const accessToken = await Auth.getPKIAuthToken(username, clientId, privateKey)
         .then((token: string) => token)
         .catch((err: ZoomInfoException) => {
           throw err;
         });
       return accessToken;
-    } else throw new Error('Malformed client credentials configuration');
+    }
+    throw new Error('Malformed client credentials configuration');
   }
 }

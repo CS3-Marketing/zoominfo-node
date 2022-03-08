@@ -1,14 +1,14 @@
-import {AxiosResponse} from 'axios';
+import { AxiosResponse } from 'axios';
 import Api from '../../../helpers/Api';
 import ZoomInfoException from '../../../helpers/Exception/ZoomInfoException';
-import {IScoopEnrich, IScoopEnrichResult} from './interfaces';
+import { IScoopEnrich, IScoopEnrichResult } from './interfaces';
 
 /**
  * @class ScoopEnrich
  * @docs https://api-docs.zoominfo.com/#ccbc0b77-f69c-43ef-9cda-ccf140485811
  */
 export default class ScoopEnrich extends Api {
-  constructor(accessToken: string) {
+  constructor(protected accessToken: string) {
     super(accessToken);
   }
 
@@ -20,7 +20,7 @@ export default class ScoopEnrich extends Api {
   public async getScoopEnrich(params: IScoopEnrich): Promise<IScoopEnrichResult> {
     return this.post('/enrich/scoop', params)
       .then((res: AxiosResponse) => {
-        let data: IScoopEnrichResult = res.data;
+        const { data } = res;
         return data;
       })
       .catch((err: ZoomInfoException) => {

@@ -1,14 +1,14 @@
-import {AxiosResponse} from 'axios';
+import { AxiosResponse } from 'axios';
 import Api from '../../../helpers/Api';
 import ZoomInfoException from '../../../helpers/Exception/ZoomInfoException';
-import {ICompanySearch, ICompanySearchResults} from './interfaces';
+import { ICompanySearch, ICompanySearchResults } from './interfaces';
 
 /**
  * @class CompanySearch
  * @docs https://api-docs.zoominfo.com/#4845df6a-2b3c-4e87-b640-e07e8c73f31d
  */
 export default class CompanySearch extends Api {
-  constructor(accessToken: string) {
+  constructor(protected accessToken: string) {
     super(accessToken);
   }
 
@@ -20,7 +20,7 @@ export default class CompanySearch extends Api {
   public async getCompanySearch(params: ICompanySearch): Promise<ICompanySearchResults> {
     return this.post('/search/company', params)
       .then((res: AxiosResponse) => {
-        let data: ICompanySearchResults = res.data;
+        const { data } = res;
         return data;
       })
       .catch((err: ZoomInfoException) => {

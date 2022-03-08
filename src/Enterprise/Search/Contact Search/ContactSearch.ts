@@ -1,5 +1,5 @@
-import {AxiosResponse} from 'axios';
-import {IContactSearch, IContactSearchResults} from './interfaces';
+import { AxiosResponse } from 'axios';
+import { IContactSearch, IContactSearchResults } from './interfaces';
 import Api from '../../../helpers/Api';
 import ZoomInfoException from '../../../helpers/Exception/ZoomInfoException';
 
@@ -8,7 +8,7 @@ import ZoomInfoException from '../../../helpers/Exception/ZoomInfoException';
  * @docs https://api-docs.zoominfo.com/#7c634f30-5b38-4453-b9d1-7b1632e0b23e
  */
 export default class ContactSearch extends Api {
-  constructor(accessToken: string) {
+  constructor(protected accessToken: string) {
     super(accessToken);
   }
 
@@ -20,7 +20,7 @@ export default class ContactSearch extends Api {
   public async getContactSearch(params: IContactSearch): Promise<IContactSearchResults> {
     return this.post('/search/contact', params)
       .then((res: AxiosResponse) => {
-        let data: IContactSearchResults = res.data;
+        const { data } = res;
         return data;
       })
       .catch((err: ZoomInfoException) => {

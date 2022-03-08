@@ -1,14 +1,14 @@
-import {AxiosResponse} from 'axios';
+import { AxiosResponse } from 'axios';
 import Api from '../../../helpers/Api';
 import ZoomInfoException from '../../../helpers/Exception/ZoomInfoException';
-import {IOrgChartEnrich, IOrgChartEnrichResults} from './interfaces';
+import { IOrgChartEnrich, IOrgChartEnrichResults } from './interfaces';
 
 /**
  * @class OrgChartEnrich
  * @docs https://api-docs.zoominfo.com/#55e0d833-7ac3-4832-a7e0-8e5ff1d201f7
  */
 export default class OrgChartEnrich extends Api {
-  constructor(accessToken: string) {
+  constructor(protected accessToken: string) {
     super(accessToken);
   }
 
@@ -20,7 +20,7 @@ export default class OrgChartEnrich extends Api {
   public async getOrgChartEnrich(params: IOrgChartEnrich): Promise<IOrgChartEnrichResults> {
     return this.post('/enrich/orgchart', params)
       .then((res: AxiosResponse) => {
-        let data: IOrgChartEnrichResults = res.data;
+        const { data } = res;
         return data;
       })
       .catch((err: ZoomInfoException) => {
